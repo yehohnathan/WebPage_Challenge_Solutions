@@ -20,15 +20,15 @@ mayor valor, en lugar de sumar, se resta su valor.
 def calculate_price(ornaments: str) -> int:
     adornos = {'*': 1, 'o': 5, '^': 10, '#': 50, '@': 100}
 
-    # Validar entrada con caracteres no permitidos
-    if any(char not in adornos for char in ornaments):
-        return
-
     # Reducir el tiempo de ejecución mediante iteraciones simples
     resultado = 0
     prev_value = 0
 
     for char in ornaments:
+        # Verifica que no se encuentre ningun valor no deseado
+        if char not in adornos:
+            return
+
         current_value = adornos[char]
         if prev_value < current_value:
             # Como siempre se va sumando el valor actual, si se detecta que
