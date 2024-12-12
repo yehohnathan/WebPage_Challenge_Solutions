@@ -20,8 +20,9 @@ mayor valor, en lugar de sumar, se resta su valor.
 def calculate_price(ornaments: str) -> int:
     adornos = {'*': 1, 'o': 5, '^': 10, '#': 50, '@': 100}
 
-    # Reducir el tiempo de ejecución mediante iteraciones simples
+    # Variable que almacena el resultado
     resultado = 0
+    # Almacena el valor previo (comienza en cero por ser menor que 1)
     prev_value = 0
 
     for char in ornaments:
@@ -29,14 +30,19 @@ def calculate_price(ornaments: str) -> int:
         if char not in adornos:
             return
 
+        # Almacena el valor actual
         current_value = adornos[char]
+        # Verifica que el valor previo sea menor que el actual, y se resta
+        # doble
         if prev_value < current_value:
             # Como siempre se va sumando el valor actual, si se detecta que
             # dicho valor (ahora el previo) es menor que el nuevo valor actual
             # se resta multiplicando por dos para que actue como si fuese una
             # simple resta
             resultado -= prev_value * 2
+        # Suma siempre el valor actual a resultado
         resultado += current_value
+        # Nuevo valor previo, igual al valor actual
         prev_value = current_value
     return resultado
 
